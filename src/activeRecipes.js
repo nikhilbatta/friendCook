@@ -3,7 +3,6 @@ export class ActiveRecipes {
     this.activeRecipes = recipeArray;
     this.scaleArray(servings)
   }
-
   scaleArray(servings){
     this.activeRecipes.forEach(recipe){
       let scaleServing = Math.ceil(servings / recipe.servings)
