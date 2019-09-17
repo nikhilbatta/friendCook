@@ -1,9 +1,7 @@
 import $ from 'jquery'
 import {Ingredient, IngredientList, MasterList} from './ingredientList.js';
 export class Recipes {
-  constructor(results) {
-    this.recipes = results;
-  }
+  constructor() {}
 
   displayResults(){
     this.recipes.forEach(function(result){
@@ -22,7 +20,9 @@ export class Recipes {
         ${ingredientsString}`);
     })
   }
-
+  setRecipes(results){
+    this.recipes = results;
+  }
   scaleRecipes(servings){
     this.recipes.forEach(function(recipe){
       let scaleServing = Math.ceil(servings / recipe.servings)
@@ -31,7 +31,6 @@ export class Recipes {
       })
     })
   }
-
   makeActive(id){
     this.recipes.forEach(function(recipe){
       if(recipe.id === id) {
@@ -49,7 +48,6 @@ export class Recipes {
         shoppingList.ingredients.push(ingredient);
       })
     })
-
     return shoppingList;
   }
 }

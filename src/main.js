@@ -15,8 +15,10 @@ function attachListeners() {
 }
 
 $(document).ready(function(){
+  let recipeObj = new Recipes();
   let masterlist = new MasterList();
-    attachListeners();
+  attachListeners();
+
   $("#resource-input-button").click(function(){
     masterlist.shared.addIngredient($("#resource-input").val())
   })
@@ -35,7 +37,7 @@ function makeRecipeObj(response){
   let recipe = JSON.parse(response);
   console.log(recipe.results)
   let recipeObj = new Recipes(recipe.results);
-
+  recipeObj.setRecipes(recipe.results);
   recipeObj.displayResults()
   console.log(recipeObj)
 }
