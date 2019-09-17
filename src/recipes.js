@@ -11,7 +11,7 @@ export class Recipes {
       result.missedIngredients.forEach(function(ingredient){
         ingredientsString += `<li>${ingredient.originalString}</li>`
       });
-      $(".results").append(`
+      $("#recipe-Viewer").append(`
         <div class="recipeItem"><h1 id="title">${result.title}</h1>
         <p id="sourceURL"><a href="${result.sourceUrl}">Check Out This Recipe</p></a>
         <p id="readyInMinutes">${result.readyInMinutes}<p>

@@ -8,8 +8,15 @@ import {} from './project';
 import {RecipeByIngredients} from './mainingredient.js'
 import {Recipes} from './recipes.js';
 
+function attachListeners() {
+  $("#recipe-Viewer").on("click", "button", function() {
+    let id = this.id
+  });
+}
+
 $(document).ready(function(){
   let masterlist = new MasterList();
+    attachListeners();
   $("#resource-input-button").click(function(){
     masterlist.shared.addIngredient($("#resource-input").val())
   })
@@ -28,6 +35,7 @@ function makeRecipeObj(response){
   let recipe = JSON.parse(response);
   console.log(recipe.results)
   let recipeObj = new Recipes(recipe.results);
+
   recipeObj.displayResults()
   console.log(recipeObj)
 }
