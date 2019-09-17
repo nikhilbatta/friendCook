@@ -9,9 +9,15 @@ import {RecipeByIngredients} from './mainingredient.js'
 import {Recipes} from './recipes.js';
 
 $(document).ready(function(){
+  let masterlist = new MasterList();
+  $("#resource-input-button").click(function(){
+    masterlist.shared.addIngredient($("#resource-input").val())
+  })
   var arr = ["chicken"]
   callRecipeAPI(arr);
 })
+
+
 
 function callRecipeAPI(ingredients){
  let recipeCall = new RecipeByIngredients();
