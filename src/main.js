@@ -10,7 +10,7 @@ import {Recipes} from './recipes.js';
 
 $(document).ready(function(){
   var arr = ["chicken"]
-  callRecipeAPI(arr)
+  callRecipeAPI(arr);
 })
 
 function callRecipeAPI(ingredients){

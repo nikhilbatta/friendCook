@@ -1,8 +1,8 @@
 import $ from 'jquery'
+import {Ingredient, IngredientList, MasterList} from './ingredientList.js';
 export class Recipes {
   constructor(results) {
     this.recipes = results;
-    this.scaleRecipes();
   }
 
   displayResults(){
@@ -23,30 +23,33 @@ export class Recipes {
     })
   }
 
-scaleArray(servings){
-  this.recipes.forEach(recipe){
-    let scaleServing = Math.ceil(servings / recipe.servings)
-    recipe.missedIngredient.forEach(ingredient){
-      ingredient.amount *= scaleServing;
-    }
-  }
-}
-
-makeActive(id){
-  this.recipes.forEach(function(recipe){
-    if(recipe.id === id) {
-      recipe.active = true;
-    }
-  })
-}
-
-buildShoppingList(){
-  let shoppingList = new IngredientList();
-  this.recipes.forEach(function(recipe){
-    recipe.missedIngredient.forEach(function(ingredient){
-      let ingredient = new Ingredient(ingredient.name, ingredient.amount, ingredient.unit);
-      shoppingList.ingredients.push(ingredient);
+  scaleRecipes(servings){
+    this.recipes.forEach(function(recipe){
+      let scaleServing = Math.ceil(servings / recipe.servings)
+      recipe.missedIngredient.forEach(function(ingredient){
+        ingredient.amount *= scaleServing;
+      })
     })
-  })
-  return shoppingList;
+  }
+
+  makeActive(id){
+    this.recipes.forEach(function(recipe){
+      if(recipe.id === id) {
+        recipe.active = true;
+      }
+    })
+  }
+
+  buildShoppingList(){
+    let shoppingList = new IngredientList();
+    this.recipes.forEach(function(recipe){
+      let ingredient;
+      recipe.missedIngredient.forEach(function(ingredient){
+        ingredient = new Ingredient(ingredient.name, ingredient.amount, ingredient.unit);
+        shoppingList.ingredients.push(ingredient);
+      })
+    })
+
+    return shoppingList;
+  }
 }
