@@ -14,12 +14,17 @@ function attachListeners() {
   });
 }
 
-
 $(document).ready(function(){
-  attachListeners();
+  let masterlist = new MasterList();
+    attachListeners();
+  $("#resource-input-button").click(function(){
+    masterlist.shared.addIngredient($("#resource-input").val())
+  })
   var arr = ["chicken"]
   callRecipeAPI(arr);
 })
+
+
 
 function callRecipeAPI(ingredients){
  let recipeCall = new RecipeByIngredients();
