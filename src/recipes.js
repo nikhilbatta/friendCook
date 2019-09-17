@@ -1,7 +1,9 @@
 import $ from 'jquery'
 import {Ingredient, IngredientList, MasterList} from './ingredientList.js';
 export class Recipes {
-  constructor() {}
+  constructor() {
+    this.activeRecipes = [];
+  }
 
   displayResults(){
     this.recipes.forEach(function(result){
@@ -29,13 +31,6 @@ export class Recipes {
       recipe.missedIngredient.forEach(function(ingredient){
         ingredient.amount *= scaleServing;
       })
-    })
-  }
-  makeActive(id){
-    this.recipes.forEach(function(recipe){
-      if(recipe.id === id) {
-        recipe.active = true;
-      }
     })
   }
 

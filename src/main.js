@@ -8,38 +8,52 @@ import {} from './project';
 import {RecipeByIngredients} from './mainingredient.js'
 import {Recipes} from './recipes.js';
 
-function attachListeners() {
+
+
+function attachRecipeListeners(recipeObj) {
+  console.log(recipeObj)
   $("#recipe-Viewer").on("click", "button", function() {
-    let id = this.id
+    let id = this.id;
+    recipeObj.activeRecipes.push(id)
+    console.log(recipeObj.activeRecipes)
+    console.log(recipeObj)
   });
 }
 
 $(document).ready(function(){
   let recipeObj = new Recipes();
   let masterlist = new MasterList();
-  attachListeners();
-
   $("#resource-input-button").click(function(){
     masterlist.shared.addIngredient($("#resource-input").val())
   })
-  var arr = ["chicken"]
-  callRecipeAPI(arr);
+
+  testData();
+  $("#addRecipes").click(function(){
+
+  })
 })
-
-
+function testData(){
+  var arr = ["chicken"]
+  callRecipeAPI(arr).then(makeRecipeObj,error);
+}
 
 function callRecipeAPI(ingredients){
- let recipeCall = new RecipeByIngredients();
- recipeCall.getIdByIngredient(ingredients).then(makeRecipeObj,error)
+  console.log("recipeObj still =",recipeObj);
+  let recipeCall = new RecipeByIngredients();
+  let promise = recipeCall.getIdByIngredient(ingredients)
+  return promise;
 }
 
 function makeRecipeObj(response){
   let recipe = JSON.parse(response);
   console.log(recipe.results)
-  let recipeObj = new Recipes(recipe.results);
+  let recipeObj = new Recipes();
   recipeObj.setRecipes(recipe.results);
+  console.log("hit")
+  console.log("recipeObj in make recipe =", recipeObj);
   recipeObj.displayResults()
-  console.log(recipeObj)
+  attachRecipeListeners(recipeObj);
+  return recipeObj;
 }
 
 function error(error){
