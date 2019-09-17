@@ -1,3 +1,4 @@
+import $ from 'jquery'
 export class Recipes {
   constructor(results) {
     this.recipes = results;
@@ -32,3 +33,11 @@ export class Recipes {
   //     }
   //   }
   // }
+
+
+
+// export default class Recipes {
+//   constructor(results) {
+//     this.results = results
+//   }
+// }
