@@ -3,7 +3,7 @@ import $ from 'jquery';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
-// import {Ingredient IngredientList MasterList} from './ingredientList.js';
+import {Ingredient, IngredientList, MasterList} from './ingredientList.js';
 import {} from './project';
 import {RecipeByIngredients} from './mainingredient.js'
 
