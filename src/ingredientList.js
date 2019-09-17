@@ -56,10 +56,11 @@ export class IngredientList {
 }
 
 export class Ingredient {
-  constructor(name, amount){
+  constructor(name, amount, unit){
     this.name = name;
     this.claimedBy = "";
     this.amount = amount;
+    this.unit = unit;
     this.flagged = false;
   }
   setClaimedBy(personName){
