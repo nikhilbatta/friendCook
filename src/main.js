@@ -3,7 +3,7 @@ import $ from 'jquery';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
-import {Ingredient IngredientList MasterList} from './ingredientList.js';
+// import {Ingredient IngredientList MasterList} from './ingredientList.js';
 import {} from './project';
 import {RecipeByIngredients} from './mainingredient.js'
 
@@ -13,12 +13,14 @@ $(document).ready(function(){
 })
 
 function callRecipeAPI(ingredients){
-  console.log("itsworking")
  let recipeCall = new RecipeByIngredients();
- recipeCall.getIdByIngredient(ingredients).then(displayRecipe())// display function, if error then we call a error function)
+ recipeCall.getIdByIngredient(ingredients).then(displayRecipe)// display function, if error then we call a error function)
 }
 
-function displayRecipe(){
+function displayRecipe(response){
  let recipe = JSON.parse(response)
- $('#body').append(`${recipe[0].title}`)
+ recipe.results.forEach(function(result){
+   console.log(result.title)
+   console.log(result.servings)
+ })
 }
