@@ -2,9 +2,8 @@ import $ from 'jquery'
 export class Recipes {
   constructor(results) {
     this.recipes = results;
+    this.scaleRecipes();
   }
-
-  //mark which ones are active with this.active = true;
 
   displayResults(){
     this.recipes.forEach(function(result){
@@ -23,21 +22,31 @@ export class Recipes {
         ${ingredientsString}`);
     })
   }
+
+scaleArray(servings){
+  this.recipes.forEach(recipe){
+    let scaleServing = Math.ceil(servings / recipe.servings)
+    recipe.missedIngredient.forEach(ingredient){
+      ingredient.amount *= scaleServing;
+    }
+  }
 }
-    //   this.scaleArray(servings)
-  // scaleArray(servings){
-  //   this.activeRecipes.forEach(recipe){
-  //     let scaleServing = Math.ceil(servings / recipe.servings)
-  //     recipe.missedIngredient.forEach(ingredient){
-  //       ingredient.amount *= scaleServing;
-  //     }
-  //   }
-  // }
 
+makeActive(id){
+  this.recipes.forEach(function(recipe){
+    if(recipe.id === id) {
+      recipe.active = true;
+    }
+  })
+}
 
-
-// export default class Recipes {
-//   constructor(results) {
-//     this.results = results
-//   }
-// }
+buildShoppingList(){
+  let shoppingList = new IngredientList();
+  this.recipes.forEach(function(recipe){
+    recipe.missedIngredient.forEach(function(ingredient){
+      let ingredient = new Ingredient(ingredient.name, ingredient.amount, ingredient.unit);
+      shoppingList.ingredients.push(ingredient);
+    })
+  })
+  return shoppingList;
+}
