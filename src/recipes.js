@@ -18,7 +18,6 @@ export class RecipeTemplate {
 export class Recipes {
   constructor(response){
     this.servings = 1;
-    this.response = "";
     this.recipes = [];
   }
   makeActive(id){
@@ -29,9 +28,8 @@ export class Recipes {
       }
     }
   }
-  recipeExtractor(){
-    let group = [];
-    this.response.forEach(function(recipeRaw){
+  recipeExtractor(results){
+    results.forEach((recipeRaw)=>{
       let id = recipeRaw.id;
       let title =recipeRaw.title;
       let url = recipeRaw.sourceUrl;
@@ -39,7 +37,7 @@ export class Recipes {
       let servings = recipeRaw.servings;
       let image = recipeRaw.image;
       let recipeIngredients = [];
-      recipeRaw.missedIngredients.forEach(function(missedIngredient){
+      recipeRaw.missedIngredients.forEach((missedIngredient) =>{
         let name = missedIngredient.name;
         let amount = missedIngredient.amount;
         let unit = missedIngredient.unit;
@@ -47,29 +45,31 @@ export class Recipes {
         recipeIngredients.push(ingredient);
       });
       let recipe = new RecipeTemplate(id,title,url,readyTime,servings,image,recipeIngredients);
-      group.push(recipe);
+      console.log('this', this)
+      console.log(this.recipes);
+      this.recipes.push(recipe);
     })
-    this.recipes = group;
   }
+
   displayResults(){
-    this.recipes.forEach(function(result){
-      console.log(result)
-      let ingredientsString = "";
-      result.recipeIngredients.forEach(function(ingredient){
-        ingredientsString += `<li>${ingredient.amount} ${ingredient.unit} ${ingredient.name}</li>`
+    let newHTML = "";
+    this.recipes.forEach(function(recipe){
+      newHTML +=
+      `<div class="recipeItem">
+        <h3 id="title">${recipe.title}</h3><br>
+        <p id="sourceURL"><a href="${recipe.url}">Check Out This Recipe</p></a><br>
+        <img class="recipePictures" src="${recipe.image}" alt=""><br>
+        <p id="readyInMinutes">${recipe.readyTime} minutes</p><br>
+        <p id ="servings">${recipe.servings} servings</p><br>
+        <button id=${recipe.id}>Make this recipe!</button><br>
+          <div class="recipe-ingredients">
+            <ul>`
+      recipe.recipeIngredients.forEach(function(ingredient){
+        newHTML += `<li>${ingredient.amount} ${ingredient.unit} ${ingredient.name}</li>`
       });
-      $("#recipe-Viewer").append(`
-        <div class="recipeItem row">
-        <h3 id="title">${result.title}</h3>
-        <p id="sourceURL"><a href="${result.url}">Check Out This Recipe</p></a>
-        <img class="recipePictures" src="${result.image}" alt="">
-        <p id="readyInMinutes">${result.readyTime} minutes</p>
-        <p id ="servings">${result.servings} servings</p>
-        <button id=${result.id}>Make this recipe!</button>
-        <div id ="recipe-ingredients">${ingredientsString}</div>
-        </div>
-      `);
+      newHTML += `</ul></div></div>`;
     })
+    $('#recipe-Viewer').html(newHTML);
   }
   scaleRecipes(){
     let servings = this.servings

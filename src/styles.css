@@ -43,5 +43,8 @@ input {
 }
 
 .duplicate{
- background-color: yellow; 
+ background-color: yellow;
+}
+img{
+  float: right;
 }

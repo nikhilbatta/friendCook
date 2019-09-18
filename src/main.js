@@ -11,17 +11,15 @@ import {Recipes, RecipeTemplate, recipeHolder } from './recipes.js';
 $(document).ready(function(){
   attachRecipeListeners();
   attachedSharedListners();
-
-  // let recipeHolder = new Recipes();
-  // let masterList = new MasterList();
-
-  // let chicken= new Ingredient('chicken', 1, 'whole')
-  // let rice = new Ingredient('rice', 2, 'cups')
-  // let tomatoes = new Ingredient('tomatoes', 3, 'whole')
-  // masterList.shared=[chicken, rice, tomatoes];
-  // masterList.shopping=[chicken, tomatoes];
   console.log(masterList)
 
+  $(".scrollTo").on('click', function(e) {
+     e.preventDefault();
+     var target = $(this).attr('href');
+     $('html, body').animate({
+       scrollTop: ($(target).offset().top)
+     }, 1000);
+  });
 
   $("#resource-input-button").click(function(){
     let name = $("#name-input").val();
@@ -66,11 +64,6 @@ $(document).ready(function(){
     masterList.displayShoppingList();
     $(".shopping-editor").hide();
   })
-
-
-  // masterList.compareShoppingShared();
-  // console.log(masterList.shopping)
-  // masterList.displayShoppingList();
 })
 
 function attachedSharedListners() {
@@ -87,7 +80,6 @@ function attachedSharedListners() {
     }
   })
 }
-
 
 function attachRecipeListeners() {
   $("#recipe-Viewer").on("click", "button", function() {
@@ -155,6 +147,7 @@ function displayShared(){
   newHTML += "</ul>"
   $('div#display-resource').html(newHTML);
 }
+
 function displaySearch(){
   let newHTML= "<ul>";
   console.log("masterList =", masterList)
@@ -174,8 +167,7 @@ function callRecipeAPI(ingredients){
 
 function makeRecipeObj(response){
   let recipe = JSON.parse(response);
-  recipeHolder.response = recipe.results;
-  recipeHolder.recipeExtractor();
+  recipeHolder.recipeExtractor(recipe.results);
   recipeHolder.displayResults();
 }
 
