@@ -6,7 +6,7 @@ export class RecipeByIngredients{
       for (var i =1; i<ingredients.length;i++){
         url+= `,+${ingredients[i]}`;
       }
-      url += `&addRecipeInformation=true&fillIngredients=true&apiKey=38ef4cc54da64613bb8a43bd28882131`;
+      url += `&addRecipeInformation=true&fillIngredients=true&apiKey=${process.env.apiKey}`;
       console.log(url);
       request.onload = function(){
         if(this.status === 200){
@@ -21,3 +21,4 @@ export class RecipeByIngredients{
   });
 }
 }
+ 
