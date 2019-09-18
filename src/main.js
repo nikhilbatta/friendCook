@@ -69,7 +69,9 @@ function attachRecipeListeners() {
 function displayShared(masterList){
   let newHTML= "<ul>"
   masterList.shared.ingredients.forEach(function(ingredient){
-    newHTML += `<li>${ingredient.name} ${ingredient.amount} ${ingredient.unit} <button id=${ingredient.name}>delete</button></li>`
+    if(ingredient){
+      newHTML += `<li>${ingredient.name} ${ingredient.amount} ${ingredient.unit} <button id=${ingredient.name}>delete</button></li>`
+    }
   })
   newHTML += "</ul>"
   $('div#display-resource').html(newHTML);
