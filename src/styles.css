@@ -1,0 +1,47 @@
+li {
+  list-style: none;
+}
+
+.active {
+ color: blue;
+}
+
+input {
+  width: 100px;
+}
+
+.crossedOut {
+  text-decoration: line-through;
+  color: gray;
+}
+
+.shopping-editor{
+  display: none;
+}
+
+#user-resources {
+  margin: 20px;
+  padding: 20px;
+  border: solid thin black;
+  background: rgba(227, 138, 144, 0.5);
+}
+
+
+#recipe-chooser {
+  margin: 20px;
+  padding: 20px;
+  border: solid thin black;
+  background: lightblue;
+}
+
+
+#shopping-div {
+  margin: 20px;
+  padding: 20px;
+  border: solid thin black;
+  background: lightgreen;
+}
+
+.duplicate{
+ background-color: yellow; 
+}
