@@ -11,6 +11,7 @@ import {Recipes, RecipeTemplate, recipeHolder } from './recipes.js';
 $(document).ready(function(){
   attachRecipeListeners();
   attachedSharedDelete();
+  attachSharedAddToSearch();
   // let recipeHolder = new Recipes();
   // let masterList = new MasterList();
 
@@ -42,9 +43,11 @@ $(document).ready(function(){
     masterList.shopping = recipeHolder.buildShoppingList();
     console.log(masterList)
   })
+  $("#fullSearch").click(function(){
+  var result =  masterList.search.ingredients.filter(ingredient => ingredient != undefined);
+  console.log(result)
+  })
 
-  var arr = ["basil", "tomatoes"]
-  //callRecipeAPI(arr);
 })
 
 function attachedSharedDelete() {
@@ -92,8 +95,9 @@ function displayShared(masterList){
   newHTML += "</ul>"
   $('div#display-resource').html(newHTML);
 }
-function displaySearch(masterList){
-  let newHTML= "<ul>"
+function displaySearch(){
+  let newHTML= "<ul>";
+  console.log("masterList =", masterList)
   masterList.search.ingredients.forEach(function(ingredient){
       newHTML += `<li>${ingredient.name} ${ingredient.amount} ${ingredient.unit}`;
   })
