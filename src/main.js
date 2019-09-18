@@ -10,13 +10,12 @@ import {Recipes, RecipeTemplate, recipeHolder } from './recipes.js';
 
 $(document).ready(function(){
   attachRecipeListeners();
-  attachSharedListeners();
+  attachedSharedDelete();
   // let recipeHolder = new Recipes();
   // let masterList = new MasterList();
 
 
   $("#resource-input-button").click(function(){
-    console.log("inform")
     let name = $("#name-input").val();
     let amount =$("#amount-input").val();
     let unit =$("#unit-input").val();
@@ -40,17 +39,26 @@ $(document).ready(function(){
   //callRecipeAPI(arr);
 })
 
-function attachSharedListeners() {
+function attachedSharedDelete() {
   $('div#display-resource').on("click", "button", function() {
     console.log('check');
     let name = this.id;
+
     console.log(name);
     console.log(masterList.shared.ingredients);
     masterList.shared.removeIngredient(name);
     displayShared(masterList);
   })
 }
-
+function attachSharedAddToSearch() {
+  $('div#display-resource').on("click", "button", function() {
+    let name = this.id.slice(1);
+    console.log(name)
+    masterList.pushToSearch(name);
+    displaySearch()
+    console.log(masterList.search.ingredients);
+  });
+}
 
 function attachRecipeListeners() {
   $("#recipe-Viewer").on("click", "button", function() {
@@ -70,11 +78,19 @@ function displayShared(masterList){
   let newHTML= "<ul>"
   masterList.shared.ingredients.forEach(function(ingredient){
     if(ingredient){
-      newHTML += `<li>${ingredient.name} ${ingredient.amount} ${ingredient.unit} <button id=${ingredient.name}>delete</button></li>`
+      newHTML += `<li>${ingredient.name} ${ingredient.amount} ${ingredient.unit} <button id=${ingredient.name}>delete</button> <button id="!${ingredient.name}">Add to Search</button></li>`
     }
   })
   newHTML += "</ul>"
   $('div#display-resource').html(newHTML);
+}
+function displaySearch(masterList){
+  let newHTML= "<ul>"
+  masterList.search.ingredients.forEach(function(ingredient){
+      newHTML += `<li>${ingredient.name} ${ingredient.amount} ${ingredient.unit}`;
+  })
+  newHTML += "</ul>"
+  $('div#display-search').html(newHTML);
 }
 
 function callRecipeAPI(ingredients){

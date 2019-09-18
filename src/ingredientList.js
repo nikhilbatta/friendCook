@@ -11,6 +11,13 @@ export class MasterList {
       ingredient.flagged=true;
     })
   }
+  pushToSearch(name){
+    this.shared.ingredients.forEach(function(ingredient){
+      if(name === ingredient.name){
+        this.search.ingredients.push(ingredient)
+      }
+    })
+  }
 }
 
 export class IngredientList {
