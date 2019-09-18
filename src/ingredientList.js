@@ -46,6 +46,16 @@ export class MasterList {
     })
     $("#shopping-list").append(listString)
   }
+  pushToSearch(name){
+    console.log(name)
+    this.shared.ingredients.forEach((ingredient) => {
+      console.log(ingredient)
+      if(name === ingredient.name){
+        console.log(ingredient.name)
+        this.search.ingredients.push(ingredient)
+      }
+    })
+  }
 }
 
 export class IngredientList {
@@ -57,9 +67,11 @@ export class IngredientList {
   }
   removeIngredient(ingredient){
     for (let i=0;i<this.ingredients.length;i++){
-      if (ingredient === this.ingredients[i].name){
-        delete this.ingredients[i];
-        return;
+      if (this.ingredients[i]) {
+        if(ingredient === this.ingredients[i].name){
+          console.log('match')
+          this.ingredients[i] = undefined;
+        }
       }
     }
   }

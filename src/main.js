@@ -9,7 +9,9 @@ import {Recipes, RecipeTemplate, recipeHolder } from './recipes.js';
 
 
 $(document).ready(function(){
-  attachListeners();
+  attachRecipeListeners();
+  attachedSharedListners();
+  
   // let recipeHolder = new Recipes();
   // let masterList = new MasterList();
 
@@ -22,13 +24,21 @@ $(document).ready(function(){
 
 
   $("#resource-input-button").click(function(){
-    console.log("inform")
     let name = $("#name-input").val();
     let amount =$("#amount-input").val();
     let unit =$("#unit-input").val();
     let newIngredient = new Ingredient(name, amount, unit);
     masterList.shared.addIngredient(newIngredient);
-    displayResources(masterList);
+
+    displayShared();
+  })
+  $("#userSearchButton").click(function(){
+    let search = $("#userInputSearch").val();
+    console.log(search)
+    let newIngredient = new Ingredient(search);
+    console.log(newIngredient);
+    masterList.search.addIngredient(newIngredient);
+    displaySearch()
   })
 
   $("#serving-input-button").click(function(){
@@ -39,6 +49,13 @@ $(document).ready(function(){
     recipeHolder.scaleRecipes()
     masterList.shopping = recipeHolder.buildShoppingList();
     console.log(masterList)
+  })
+  $("#fullSearch").click(function(){
+  masterList.search.ingredients.filter(ingredient => ingredient != undefined);
+  let result = masterList.search.ingredients.map(function(ingredient){
+    return ingredient.name
+  })
+  callRecipeAPI(result)
   })
 
   $("#edit-shopping-ingredient").click(function(){
@@ -57,10 +74,24 @@ $(document).ready(function(){
   // var arr = ["basil", "tomatoes"]
   // callRecipeAPI(arr);
 
-
 })
 
-function attachListeners() {
+function attachedSharedListners() {
+  $('div#display-resource').on("click", "button", function() {
+    console.log('check');
+    let name = this.id;
+    if(name[0] === "!"){
+      masterList.pushToSearch(name.slice(1));
+      displaySearch()
+    } else {
+      masterList.shared.removeIngredient(name);
+      displayShared();
+    }
+  })
+}
+
+
+function attachRecipeListeners() {
   $("#recipe-Viewer").on("click", "button", function() {
     let id = this.id;
     recipeHolder.makeActive(id);
@@ -116,26 +147,39 @@ function activeIngredientPopulator(){
     }
 }
 
+function displayShared(){
 
-function displayResources(masterList){
   let newHTML= "<ul>"
   masterList.shared.ingredients.forEach(function(ingredient){
-    newHTML += `<li>${ingredient.name} ${ingredient.amount} ${ingredient.unit}</li>`
+    if(ingredient){
+      newHTML += `<li>${ingredient.name} ${ingredient.amount} ${ingredient.unit} <button id=${ingredient.name}>delete</button> <button id="!${ingredient.name}">Add to Search</button></li>`
+    }
   })
   newHTML += "</ul>"
   $('div#display-resource').html(newHTML);
 }
+function displaySearch(){
+  let newHTML= "<ul>";
+  console.log("masterList =", masterList)
+  masterList.search.ingredients.forEach(function(ingredient){
+    console.log(ingredient.name)
+      newHTML += `<li>${ingredient.name}</li>`;
+  })
+  newHTML += "</ul>"
+  $('div#display-search').html(newHTML);
+}
 
 function callRecipeAPI(ingredients){
+  console.log(ingredients)
  let recipeCall = new RecipeByIngredients();
- recipeCall.getIdByIngredient(ingredients).then(makeRecipeObj,error)
+ recipeCall.getIdByIngredient(ingredients).then(makeRecipeObj,error);
 }
 
 function makeRecipeObj(response){
   let recipe = JSON.parse(response);
-  recipeHolder.response = recipe.results
-  recipeHolder.recipeExtractor()
-  recipeHolder.displayResults()
+  recipeHolder.response = recipe.results;
+  recipeHolder.recipeExtractor();
+  recipeHolder.displayResults();
 }
 
 function error(error){
