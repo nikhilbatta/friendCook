@@ -65,7 +65,7 @@ Then each ingredient that is found in the shared resource list is flagged for th
 
 Scenario: user can claim item from list for recipes  
 When an item is needed for a recipe   
-Give the item is in the shared foods array (as determined by user) and the shopping list exists  
+Given the item is in the shared foods array (as determined by user) and the shopping list exists  
 Then the user can edit the item  
 
 STRETCH:
@@ -73,6 +73,14 @@ Scenario: A user wants modify an ingredient in the shopping list
 When a user clicks on an ingredient  
 Given the ingredient is in the shopping list  
 Then the user can mark that the ingredient will be brought by which person  
+
+STRETCH:
+Scenario: A user wants to combine items in the shopping list  
+When the list loads
+Given the ingredient is duplicated in the shopping list  
+Then the items are combined into one (or at least alphabetized so it's easy to see)  
+
+
 
 
 

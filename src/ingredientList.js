@@ -11,6 +11,15 @@ export class MasterList {
       ingredient.flagged=true;
     })
   }
+  displayShoppingList(){
+    this.shopping.forEach(function(ingredient){
+      let name = ingredient.name
+      let amount = ingredient.amount
+      let unit = ingredient.unit
+      let string = `<li id="${name}">${amount} ${unit} ${name}</li>`
+      $("#shopping-list").append(string)
+    })
+  }
 }
 
 export class IngredientList {
@@ -68,3 +77,8 @@ export class Ingredient {
 }
 
 export let masterList = new MasterList();
+let chicken= new Ingredient('chicken', 1, 'whole')
+let rice = new Ingredient('rice', 2, 'cups')
+let tomatoes = new Ingredient('tomatoes', 3, 'whole')
+masterlist.shared=[chicken, rice, tomatoes]
+masterlist.shopping=[chicken, tomatoes]

@@ -34,8 +34,9 @@ $(document).ready(function(){
     console.log(masterList)
   })
 
-  var arr = ["basil", "tomatoes"]
-  callRecipeAPI(arr);
+  masterlist.displayShoppingList();
+  // var arr = ["basil", "tomatoes"]
+  // callRecipeAPI(arr);
 })
 
 function attachListeners() {
