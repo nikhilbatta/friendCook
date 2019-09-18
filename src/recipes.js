@@ -53,6 +53,7 @@ export class Recipes {
   }
   displayResults(){
     this.recipes.forEach(function(result){
+      console.log(result)
       let ingredientsString = "";
       result.recipeIngredients.forEach(function(ingredient){
         ingredientsString += `<li>${ingredient.amount} ${ingredient.unit} ${ingredient.name}</li>`

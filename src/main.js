@@ -30,8 +30,8 @@ $(document).ready(function(){
     console.log(search)
     let newIngredient = new Ingredient(search);
     console.log(newIngredient);
-    masterList.search.addIngredient(search);
-    displaySearch(masterList)
+    masterList.search.addIngredient(newIngredient);
+    displaySearch()
   })
 
   $("#serving-input-button").click(function(){
@@ -45,8 +45,13 @@ $(document).ready(function(){
   })
   $("#fullSearch").click(function(){
   var result =  masterList.search.ingredients.filter(ingredient => ingredient != undefined);
-  console.log(result)
+  let parsedResult = masterList.search.ingredients.map(function(ingredient){
+    return ingredient.name
   })
+  callRecipeAPI(parsedResult)
+  })
+
+
 
 })
 
@@ -85,7 +90,7 @@ function attachRecipeListeners() {
   });
 }
 
-function displayShared(masterList){
+function displayShared(){
   let newHTML= "<ul>"
   masterList.shared.ingredients.forEach(function(ingredient){
     if(ingredient){
@@ -99,13 +104,15 @@ function displaySearch(){
   let newHTML= "<ul>";
   console.log("masterList =", masterList)
   masterList.search.ingredients.forEach(function(ingredient){
-      newHTML += `<li>${ingredient.name} ${ingredient.amount} ${ingredient.unit}`;
+    console.log(ingredient.name)
+      newHTML += `<li>${ingredient.name}</li>`;
   })
   newHTML += "</ul>"
   $('div#display-search').html(newHTML);
 }
 
 function callRecipeAPI(ingredients){
+  console.log(ingredients)
  let recipeCall = new RecipeByIngredients();
  recipeCall.getIdByIngredient(ingredients).then(makeRecipeObj,error);
 }
