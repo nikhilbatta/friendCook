@@ -10,7 +10,7 @@ import {Recipes} from './recipes.js';
 
 
 
-function attachRecipeListeners(recipeObj) {
+function attachRecipeListeners() {
   console.log(recipeObj)
   $("#recipe-Viewer").on("click", "button", function() {
     let id = this.id;
@@ -19,15 +19,15 @@ function attachRecipeListeners(recipeObj) {
     console.log(recipeObj)
   });
 }
-
+var recipeObj = new Recipes();
 $(document).ready(function(){
-  let recipeObj = new Recipes();
   let masterlist = new MasterList();
+  testData();
   $("#resource-input-button").click(function(){
     masterlist.shared.addIngredient($("#resource-input").val())
   })
 
-  testData();
+  
   $("#addRecipes").click(function(){
 
   })
@@ -47,13 +47,11 @@ function callRecipeAPI(ingredients){
 function makeRecipeObj(response){
   let recipe = JSON.parse(response);
   console.log(recipe.results)
-  let recipeObj = new Recipes();
   recipeObj.setRecipes(recipe.results);
   console.log("hit")
   console.log("recipeObj in make recipe =", recipeObj);
   recipeObj.displayResults()
-  attachRecipeListeners(recipeObj);
-  return recipeObj;
+  attachRecipeListeners();
 }
 
 function error(error){
