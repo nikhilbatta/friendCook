@@ -12,8 +12,11 @@ export class MasterList {
     })
   }
   pushToSearch(name){
+    console.log(name)
     this.shared.ingredients.forEach((ingredient) => {
+      console.log(ingredient)
       if(name === ingredient.name){
+        console.log(ingredient.name)
         this.search.ingredients.push(ingredient)
       }
     })

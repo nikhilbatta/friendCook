@@ -10,8 +10,8 @@ import {Recipes, RecipeTemplate, recipeHolder } from './recipes.js';
 
 $(document).ready(function(){
   attachRecipeListeners();
-  attachedSharedDelete();
-  attachSharedAddToSearch();
+  attachedSharedListners();
+  
   // let recipeHolder = new Recipes();
   // let masterList = new MasterList();
 
@@ -44,37 +44,31 @@ $(document).ready(function(){
     console.log(masterList)
   })
   $("#fullSearch").click(function(){
-  var result =  masterList.search.ingredients.filter(ingredient => ingredient != undefined);
-  let parsedResult = masterList.search.ingredients.map(function(ingredient){
+  masterList.search.ingredients.filter(ingredient => ingredient != undefined);
+  let result = masterList.search.ingredients.map(function(ingredient){
     return ingredient.name
   })
-  callRecipeAPI(parsedResult)
+  callRecipeAPI(result)
   })
 
 
 
 })
 
-function attachedSharedDelete() {
+function attachedSharedListners() {
   $('div#display-resource').on("click", "button", function() {
     console.log('check');
     let name = this.id;
-
-    console.log(name);
-    console.log(masterList);
-    masterList.shared.removeIngredient(name);
-    displayShared(masterList);
+    if(name[0] === "!"){
+      masterList.pushToSearch(name.slice(1));
+      displaySearch()
+    } else {
+      masterList.shared.removeIngredient(name);
+      displayShared();
+    }
   })
 }
-function attachSharedAddToSearch() {
-  $('div#display-resource').on("click", "button", function() {
-    let name = this.id.slice(1);
-    console.log(name)
-    masterList.pushToSearch(name);
-    displaySearch()
-    console.log(masterList);
-  });
-}
+
 
 function attachRecipeListeners() {
   $("#recipe-Viewer").on("click", "button", function() {
