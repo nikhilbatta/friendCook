@@ -9,7 +9,8 @@ import {Recipes, RecipeTemplate, recipeHolder } from './recipes.js';
 
 
 $(document).ready(function(){
-  attachListeners();
+  attachRecipeListeners();
+  attachSharedListeners();
   // let recipeHolder = new Recipes();
   // let masterList = new MasterList();
 
@@ -21,7 +22,8 @@ $(document).ready(function(){
     let unit =$("#unit-input").val();
     let newIngredient = new Ingredient(name, amount, unit);
     masterList.shared.addIngredient(newIngredient);
-    displayResources(masterList);
+
+    displayShared(masterList);
   })
 
   $("#serving-input-button").click(function(){
@@ -35,10 +37,22 @@ $(document).ready(function(){
   })
 
   var arr = ["basil", "tomatoes"]
-  callRecipeAPI(arr);
+  //callRecipeAPI(arr);
 })
 
-function attachListeners() {
+function attachSharedListeners() {
+  $('div#display-resource').on("click", "button", function() {
+    console.log('check');
+    let name = this.id;
+    console.log(name);
+    console.log(masterList.shared.ingredients);
+    masterList.shared.removeIngredient(name);
+    displayShared(masterList);
+  })
+}
+
+
+function attachRecipeListeners() {
   $("#recipe-Viewer").on("click", "button", function() {
     let id = this.id;
     recipeHolder.makeActive(id);
@@ -52,10 +66,10 @@ function attachListeners() {
   });
 }
 
-function displayResources(masterList){
+function displayShared(masterList){
   let newHTML= "<ul>"
   masterList.shared.ingredients.forEach(function(ingredient){
-    newHTML += `<li>${ingredient.name} ${ingredient.amount} ${ingredient.unit}</li>`
+    newHTML += `<li>${ingredient.name} ${ingredient.amount} ${ingredient.unit} <button id=${ingredient.name}>delete</button></li>`
   })
   newHTML += "</ul>"
   $('div#display-resource').html(newHTML);
@@ -63,14 +77,14 @@ function displayResources(masterList){
 
 function callRecipeAPI(ingredients){
  let recipeCall = new RecipeByIngredients();
- recipeCall.getIdByIngredient(ingredients).then(makeRecipeObj,error)
+ recipeCall.getIdByIngredient(ingredients).then(makeRecipeObj,error);
 }
 
 function makeRecipeObj(response){
   let recipe = JSON.parse(response);
-  recipeHolder.response = recipe.results
-  recipeHolder.recipeExtractor()
-  recipeHolder.displayResults()
+  recipeHolder.response = recipe.results;
+  recipeHolder.recipeExtractor();
+  recipeHolder.displayResults();
 }
 
 function error(error){

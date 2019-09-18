@@ -23,6 +23,7 @@ export class IngredientList {
   removeIngredient(ingredient){
     for (let i=0;i<this.ingredients.length;i++){
       if (ingredient === this.ingredients[i].name){
+        console.log('match')
         delete this.ingredients[i];
         return;
       }
