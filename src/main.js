@@ -3,22 +3,15 @@ import $ from 'jquery';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
-import {Ingredient, IngredientList, MasterList} from './ingredientList.js';
-import {} from './project';
-import {RecipeByIngredients} from './mainingredient.js'
-import {Recipes} from './recipes.js';
+import {Ingredient, IngredientList, MasterList, masterList} from './ingredientList.js';
+import {RecipeByIngredients} from './apiCall.js'
+import {Recipes, RecipeTemplate, recipeHolder } from './recipes.js';
 
-function attachListeners() {
-  $("#recipe-Viewer").on("click", "button", function() {
-    let id = this.id
-  });
-}
 
 $(document).ready(function(){
-  let recipeObj = new Recipes();
-  let masterList = new MasterList();
-  let servings;
   attachListeners();
+  // let recipeHolder = new Recipes();
+  // let masterList = new MasterList();
 
 
   $("#resource-input-button").click(function(){
@@ -27,22 +20,41 @@ $(document).ready(function(){
     let amount =$("#amount-input").val();
     let unit =$("#unit-input").val();
     let newIngredient = new Ingredient(name, amount, unit);
-    console.log(newIngredient);
     masterList.shared.addIngredient(newIngredient);
-    console.log(masterList.shared);
     displayResources(masterList);
   })
+
   $("#serving-input-button").click(function(){
-    servings = $("#serving-input").val();
+    recipeHolder.servings = $("#serving-input").val();
   })
-  // var arr = ["chicken"]
-  // callRecipeAPI(arr);
+
+  $("#submit-recipes").click(function(){
+    recipeHolder.scaleRecipes()
+    masterList.shopping = recipeHolder.buildShoppingList();
+    console.log(masterList)
+  })
+
+  var arr = ["basil", "tomatoes"]
+  callRecipeAPI(arr);
 })
+
+function attachListeners() {
+  $("#recipe-Viewer").on("click", "button", function() {
+    let id = this.id;
+    recipeHolder.makeActive(id);
+    let string = "";
+    recipeHolder.recipes.forEach(function(recipe){
+      if (recipe.active === true){
+      string += ` ${recipe.title}`
+      }
+    })
+    $("#active-Recipes").text(string);
+  });
+}
 
 function displayResources(masterList){
   let newHTML= "<ul>"
   masterList.shared.ingredients.forEach(function(ingredient){
-  console.log(masterList.shared.ingredients);
     newHTML += `<li>${ingredient.name} ${ingredient.amount} ${ingredient.unit}</li>`
   })
   newHTML += "</ul>"
@@ -56,11 +68,9 @@ function callRecipeAPI(ingredients){
 
 function makeRecipeObj(response){
   let recipe = JSON.parse(response);
-  console.log(recipe.results)
-  let recipeObj = new Recipes(recipe.results);
-  recipeObj.setRecipes(recipe.results);
-  recipeObj.displayResults()
-  console.log(recipeObj)
+  recipeHolder.response = recipe.results
+  recipeHolder.recipeExtractor()
+  recipeHolder.displayResults()
 }
 
 function error(error){

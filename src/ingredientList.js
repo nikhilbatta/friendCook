@@ -11,7 +11,6 @@ export class MasterList {
       ingredient.flagged=true;
     })
   }
-
 }
 
 export class IngredientList {
@@ -67,3 +66,5 @@ export class Ingredient {
     this.claimedBy = personName;
   }
 }
+
+export let masterList = new MasterList();
