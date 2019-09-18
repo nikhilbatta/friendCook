@@ -15,22 +15,15 @@ $(document).ready(function(){
   // let recipeHolder = new Recipes();
   // let masterList = new MasterList();
 
-  // let chicken= new Ingredient('chicken', 1, 'whole')
-  // let rice = new Ingredient('rice', 2, 'cups')
-  // let tomatoes = new Ingredient('tomatoes', 3, 'whole')
-  // masterList.shared=[chicken, rice, tomatoes];
-  // masterList.shopping=[chicken, tomatoes];
-  console.log(masterList)
-
 
   $("#resource-input-button").click(function(){
     let name = $("#name-input").val();
     let amount =$("#amount-input").val();
     let unit =$("#unit-input").val();
     let newIngredient = new Ingredient(name, amount, unit);
-    console.log(newIngredient)
     masterList.shared.addIngredient(newIngredient);
-    displayShared();
+
+    displayShared(masterList);
   })
   $("#userSearchButton").click(function(){
     let search = $("#userInputSearch").val();
@@ -48,8 +41,6 @@ $(document).ready(function(){
   $("#submit-recipes").click(function(){
     recipeHolder.scaleRecipes()
     masterList.shopping = recipeHolder.buildShoppingList();
-    masterList.compareShoppingShared()
-    masterList.displayShoppingList()
     console.log(masterList)
   })
   $("#fullSearch").click(function(){
@@ -60,17 +51,8 @@ $(document).ready(function(){
   callRecipeAPI(result)
   })
 
-  $("#edit-shopping-ingredient").click(function(){
-    activeIngredientEditor();
-    $("#shopping-list").text("");
-    masterList.displayShoppingList();
-    $(".shopping-editor").hide();
-  })
 
 
-  // masterList.compareShoppingShared();
-  // console.log(masterList.shopping)
-  // masterList.displayShoppingList();
 })
 
 function attachedSharedListners() {
@@ -82,7 +64,6 @@ function attachedSharedListners() {
       displaySearch()
     } else {
       masterList.shared.removeIngredient(name);
-      console.log(masterList.shared.ingredients)
       displayShared();
     }
   })
@@ -101,48 +82,6 @@ function attachRecipeListeners() {
     })
     $("#active-Recipes").text(string);
   });
-  $("#shopping-list").on('click', 'li', function(){
-    let id = this.id;
-    $(".ingredient").removeClass("active")
-    if (id === masterList.activeIngredient){
-      masterList.activeIngredient = "";
-      $(".shopping-editor").hide();
-    } else {
-      $(`#${id}`).addClass("active")
-      masterList.activeIngredient = id;
-      $("#shopping-ingredient-name").val("")
-      activeIngredientPopulator();
-      $(".shopping-editor").show();
-    }
-  })
-}
-
-function activeIngredientEditor(){
-  let id = masterList.activeIngredient;
-  for (let i=0; i<masterList.shopping.ingredients.length; i++){
-    if (masterList.shopping.ingredients[i].name == id){
-    let ingredient = masterList.shopping.ingredients[i];
-    ingredient.name = $("#shopping-ingredient-name").val()
-    ingredient.amount = $("#shopping-ingredient-amount").val();
-    ingredient.unit = $("#shopping-ingredient-unit").val();
-    ingredient.claimedBy = $("#shopping-ingredient-claimed-by").val();
-    console.log(ingredient);
-    }
-  }
-}
-
-function activeIngredientPopulator(){
-    let id = masterList.activeIngredient;
-    console.log(id);
-    for (let i=0; i<masterList.shopping.ingredients.length; i++){
-      if (masterList.shopping.ingredients[i].name == id){
-      let ingredient = masterList.shopping.ingredients[i];
-      $("#shopping-ingredient-name").val(ingredient.name);
-      $("#shopping-ingredient-amount").val(ingredient.amount);
-      $("#shopping-ingredient-unit").val(ingredient.unit);
-      $("#shopping-ingredient-claimed-by").val(ingredient.claimedby);
-      }
-    }
 }
 
 function displayShared(){

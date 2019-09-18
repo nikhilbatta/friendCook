@@ -12,11 +12,11 @@ export class MasterList {
   compareShoppingShared() {
 
 
-    for(let i = 0; i<this.shopping.length; i++){
-      var ingredient = masterList.shopping[i].name
-      for(let j=0; j<masterList.shared.length; j++)
-        if(ingredient === masterList.shared[j].name){
-          masterList.shopping[i].flagged=true;
+    for(let i = 0; i<this.shopping.ingredients.length; i++){
+      var ingredient = masterList.shopping.ingredients[i].name
+      for(let j=0; j<masterList.shared.ingredients.length; j++)
+        if(ingredient === masterList.shared.ingredients[j].name){
+          masterList.shopping.ingredients[i].flagged=true;
           console.log(ingredient)
 
         }
@@ -26,8 +26,9 @@ export class MasterList {
 
 
   displayShoppingList(){
+    console.log(this.shopping)
     let listString = "";
-    this.shopping.forEach(function(ingredient){
+    this.shopping.ingredients.forEach(function(ingredient){
       let duplicate = ""
       if(ingredient.flagged === true){
         duplicate = "duplicate"
@@ -50,10 +51,12 @@ export class MasterList {
     console.log(name)
     this.shared.ingredients.forEach((ingredient) => {
       console.log(ingredient)
-      if(name === ingredient.name){
-        console.log(ingredient.name)
-        this.search.ingredients.push(ingredient)
-      }
+      if (ingredient){
+        if(name === ingredient.name){
+          console.log(ingredient.name)
+          this.search.ingredients.push(ingredient)
+        }
+      }      
     })
   }
 }
@@ -66,6 +69,7 @@ export class IngredientList {
     this.ingredients.push(ingredient);
   }
   removeIngredient(ingredient){
+    console.log(ingredient)
     for (let i=0;i<this.ingredients.length;i++){
       if (this.ingredients[i]) {
         if(ingredient === this.ingredients[i].name){
@@ -108,6 +112,7 @@ export class Ingredient {
     this.amount = amount;
     this.unit = unit;
     this.flagged = false;
+    this.recipe = "";
   }
   setClaimedBy(personName){
     this.claimedBy = personName;
