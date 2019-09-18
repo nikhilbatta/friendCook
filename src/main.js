@@ -41,9 +41,23 @@ $(document).ready(function(){
     console.log(masterList)
   })
 
+  $("#edit-shopping-ingredient").click(function(){
+    activeIngredientEditor();
+    $("#shopping-list").text("");
+    masterList.displayShoppingList();
+    $(".shopping-editor").hide();
+  })
+
+
+  masterList.compareShoppingShared();
+  console.log(masterList.shopping)
+
   masterList.displayShoppingList();
+
   // var arr = ["basil", "tomatoes"]
   // callRecipeAPI(arr);
+
+
 })
 
 function attachListeners() {
@@ -58,7 +72,50 @@ function attachListeners() {
     })
     $("#active-Recipes").text(string);
   });
+  $("#shopping-list").on('click', 'li', function(){
+    let id = this.id;
+    $(".ingredient").removeClass("active")
+    if (id === masterList.activeIngredient){
+      masterList.activeIngredient = "";
+      $(".shopping-editor").hide();
+    } else {
+      $(`#${id}`).addClass("active")
+      masterList.activeIngredient = id;
+      $("#shopping-ingredient-name").val("")
+      activeIngredientPopulator();
+      $(".shopping-editor").show();
+    }
+  })
 }
+
+function activeIngredientEditor(){
+  let id = masterList.activeIngredient;
+  for (let i=0; i<masterList.shopping.length; i++){
+    if (masterList.shopping[i].name == id){
+    let ingredient = masterList.shopping[i];
+    ingredient.name = $("#shopping-ingredient-name").val()
+    ingredient.amount = $("#shopping-ingredient-amount").val();
+    ingredient.unit = $("#shopping-ingredient-unit").val();
+    ingredient.claimedBy = $("#shopping-ingredient-claimed-by").val();
+    console.log(ingredient);
+    }
+  }
+}
+
+function activeIngredientPopulator(){
+    let id = masterList.activeIngredient;
+    console.log(id);
+    for (let i=0; i<masterList.shopping.length; i++){
+      if (masterList.shopping[i].name == id){
+      let ingredient = masterList.shopping[i];
+      $("#shopping-ingredient-name").val(ingredient.name);
+      $("#shopping-ingredient-amount").val(ingredient.amount);
+      $("#shopping-ingredient-unit").val(ingredient.unit);
+      $("#shopping-ingredient-claimed-by").val(ingredient.claimedby);
+      }
+    }
+}
+
 
 function displayResources(masterList){
   let newHTML= "<ul>"

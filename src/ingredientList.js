@@ -6,20 +6,41 @@ export class MasterList {
     this.suggested = new IngredientList();
     this.search = new IngredientList();
     this.shopping = new IngredientList();
+
+    this.activeIngredient = "";
   }
   compareShoppingShared() {
-    this.shopping.forEach(function(ingredient){
-      if (this.shared.includes(ingredient.name))
-      ingredient.flagged=true;
-    })
+
+
+    for(let i = 0; i<this.shopping.length; i++){
+      var ingredient = masterList.shopping[i].name
+      for(let j=0; j<masterList.shared.length; j++)
+        if(ingredient === masterList.shared[j].name){
+          masterList.shopping[i].flagged=true;
+          console.log(ingredient)
+
+        }
+
+    }
   }
+
+
   displayShoppingList(){
     let listString = "";
     this.shopping.forEach(function(ingredient){
+      let duplicate = ""
+      if(ingredient.flagged === true){
+        duplicate = "duplicate"
+      }
       let name = ingredient.name
       let amount = ingredient.amount
       let unit = ingredient.unit
-      let string = `<li id="${name}">${amount} ${unit} ${name}</li>`
+      let claimedBy = ingredient.claimedBy
+      let crossedOut = ""
+      if (claimedBy !== ""){
+        crossedOut = "crossedOut";
+      }
+      let string = `<li class="ingredient" id="${name}"><span class="${duplicate} ${crossedOut}">${amount} ${unit} ${name}</span>   ${claimedBy}</li>`
       listString = listString + string
       console.log(listString)
     })
