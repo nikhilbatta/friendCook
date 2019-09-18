@@ -24,6 +24,14 @@ $(document).ready(function(){
 
     displayShared(masterList);
   })
+  $("#userSearchButton").click(function(){
+    let search = $("#userInputSearch").val();
+    console.log(search)
+    let newIngredient = new Ingredient(search);
+    console.log(newIngredient);
+    masterList.search.addIngredient(search);
+    displaySearch(masterList)
+  })
 
   $("#serving-input-button").click(function(){
     recipeHolder.servings = $("#serving-input").val();
@@ -45,7 +53,7 @@ function attachedSharedDelete() {
     let name = this.id;
 
     console.log(name);
-    console.log(masterList.shared.ingredients);
+    console.log(masterList);
     masterList.shared.removeIngredient(name);
     displayShared(masterList);
   })
@@ -56,7 +64,7 @@ function attachSharedAddToSearch() {
     console.log(name)
     masterList.pushToSearch(name);
     displaySearch()
-    console.log(masterList.search.ingredients);
+    console.log(masterList);
   });
 }
 
