@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 export class MasterList {
   constructor(){
     this.shared = new IngredientList();
@@ -12,13 +14,16 @@ export class MasterList {
     })
   }
   displayShoppingList(){
+    let listString = "";
     this.shopping.forEach(function(ingredient){
       let name = ingredient.name
       let amount = ingredient.amount
       let unit = ingredient.unit
       let string = `<li id="${name}">${amount} ${unit} ${name}</li>`
-      $("#shopping-list").append(string)
+      listString = listString + string
+      console.log(listString)
     })
+    $("#shopping-list").append(listString)
   }
 }
 
@@ -77,8 +82,3 @@ export class Ingredient {
 }
 
 export let masterList = new MasterList();
-let chicken= new Ingredient('chicken', 1, 'whole')
-let rice = new Ingredient('rice', 2, 'cups')
-let tomatoes = new Ingredient('tomatoes', 3, 'whole')
-masterlist.shared=[chicken, rice, tomatoes]
-masterlist.shopping=[chicken, tomatoes]

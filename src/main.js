@@ -13,6 +13,13 @@ $(document).ready(function(){
   // let recipeHolder = new Recipes();
   // let masterList = new MasterList();
 
+  let chicken= new Ingredient('chicken', 1, 'whole')
+  let rice = new Ingredient('rice', 2, 'cups')
+  let tomatoes = new Ingredient('tomatoes', 3, 'whole')
+  masterList.shared=[chicken, rice, tomatoes];
+  masterList.shopping=[chicken, tomatoes];
+  console.log(masterList)
+
 
   $("#resource-input-button").click(function(){
     console.log("inform")
@@ -34,7 +41,7 @@ $(document).ready(function(){
     console.log(masterList)
   })
 
-  masterlist.displayShoppingList();
+  masterList.displayShoppingList();
   // var arr = ["basil", "tomatoes"]
   // callRecipeAPI(arr);
 })
