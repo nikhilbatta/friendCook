@@ -63,9 +63,8 @@ $(document).ready(function(){
 
   $("#edit-shopping-ingredient").click(function(){
     activeIngredientEditor();
-    $("#shopping-list").text("");
     masterList.displayShoppingList();
-    $(".shopping-editor").hide();
+    // $(".shopping-editor").hide();
   })
 })
 
@@ -114,7 +113,6 @@ function attachRecipeListeners() {
     $(".ingredient").removeClass("active")
     if (id === masterList.activeIngredient){
       masterList.activeIngredient = "";
-      $(".shopping-editor").hide();
     } else {
       $(`#${id}`).addClass("active")
       masterList.activeIngredient = id;

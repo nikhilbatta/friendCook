@@ -27,7 +27,7 @@ export class MasterList {
         duplicate = "duplicate";
       }
       let name = ingredient.name;
-      let amount = ingredient.amount.toFixed(2);
+      let amount = ingredient.amount;
       let unit = ingredient.unit;
       let claimedBy = ingredient.claimedBy;
       let crossedOut = "";
