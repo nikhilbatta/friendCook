@@ -69,6 +69,7 @@ nav a{
 
 .jumbotron {
   text-align: center;
+  margin-top: 80px;
 
 }
 
@@ -219,7 +220,7 @@ nav a{
 }
 
 .shopping-editor{
-  /* display: none; */
+  display: none;
   display: block;
   width: 100%;
   height: 50px;
