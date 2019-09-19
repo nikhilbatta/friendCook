@@ -11,7 +11,12 @@ import {Recipes, RecipeTemplate, recipeHolder } from './recipes.js';
 $(document).ready(function(){
   attachRecipeListeners();
   attachedSharedListners();
+  $('div#splash').show();
 
+  $('#splashButton').click(function() {
+    $('#bodyWithoutSplash').show();
+    $('#splash').hide();
+  })
 
   $(".scrollTo").on('click', function(e) {
      e.preventDefault();

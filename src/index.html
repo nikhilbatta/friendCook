@@ -5,14 +5,29 @@
   <title></title>
   <link href="https://fonts.googleapis.com/css?family=Loved+by+the+King&display=swap" rel="stylesheet">
 </head>
-<body>
-  <nav class='navbar-text fixed-top'>
-    <a href="#user-shared" class="scrollTo">Intro</a>
-    <a href="#shopping-div" class="scrollTo">Shopping List</a>
-    <a href="#recipe-chooser" class="scrollTo">Recipes</a>
-  </nav>
+<body class='container'>
 
-  <div class='container'>
+  <div id="splash">
+    <div class="jumbotron">
+      <h1 class="display-4">Cooking Party</h1>
+      <p class="lead">Planning a cooking party? Collect information to manage shared resources, find and scale recipes and make your list.</p>
+      <img src="/images/chardWrap.jpg" alt="chard-wrap">
+      <br>
+      <br>
+      <br>
+      <button id='splashButton' type="button" name="button">Start Cooking!</button>
+
+    </div>
+  </div>
+
+    </div>
+  </div>
+  <div id="bodyWithoutSplash">
+    <nav class='navbar-text sticky-top'>
+      <a href="#user-shared" class="scrollTo">Intro</a>
+      <a href="#shopping-div" class="scrollTo">Shopping List</a>
+      <a href="#recipe-chooser" class="scrollTo">Recipes</a>
+    </nav>
 
     <div id="welcome-screen">
       <div class="col-md-6">
@@ -22,10 +37,7 @@
       </div>
     </div>
 
-
-
     <div class="row" id="user-shared">
-
       <div id="add-ingredient-form">
         <div class="ingredient-field">
           <h5>Add Ingredients to Share</h5>
@@ -50,30 +62,20 @@
       <div id="display-resource">
       </div>
 
-
       <div class="row">
-
         <div class='col-md-6'>
           <label for="userInputSearch"> Search </label>
           <input id="userInputSearch" type="text" name="" value="">
           <button id="userSearchButton"type="button" name="button"> Add To Search </button>
         </div>
       </div>
-
       <button id="fullSearch" type="button" name="button"> Search Recipes</button>
       <div id='display-search'>
-
       </div>
     </div>
 
-
-
-
-
-
     <div class="row" id="recipe-chooser">
       <div class="" id="recipe-Viewer">
-
         <div class="recipeItem">
           <div class="row recipe-header">
             <div class="recipe-title">
@@ -209,9 +211,6 @@
       </div>
     </div>
 
-
-
-
     <div id="shopping-div">
       <div class="shopping-editor">
         <label for="name">Ingredient Name:</label>
@@ -229,8 +228,8 @@
         </div>
       </div>
     </div>
-  </div>
 
+  </div>
 
 </body>
 </html>
