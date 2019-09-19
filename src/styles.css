@@ -3,9 +3,10 @@ body{
   min-width: 650px;
   color: #2e2e2e;
   background: rgb(201,201,201);
-background: linear-gradient(90deg, rgba(201,201,201,1) 0%, rgba(252,252,252,1) 25%, rgba(252,252,252,1) 25%, rgba(252,252,252,1) 75%, rgba(208,208,208,1) 100%);
+  background: linear-gradient(90deg, rgba(201,201,201,1) 0%, rgba(252,252,252,1) 25%, rgba(252,252,252,1) 25%, rgba(252,252,252,1) 75%, rgba(208,208,208,1) 100%);
   /* font-family: 'Loved by the King', cursive; */
 }
+
 
 
 li {
@@ -40,6 +41,36 @@ label {
 .duplicate{
   font-size: 1.2em;
   font-weight: 600;
+}
+
+
+/* splash and  nav bar*/
+
+nav {
+  background-color: grey;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+nav a{
+  color: black;
+  margin: 20px;
+}
+
+.scrollTo{
+  margin: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.jumbotron {
+  text-align: center;
+  margin-top: 80px;
+
 }
 
 
@@ -121,11 +152,15 @@ label {
 }
 
 
+#bodyWithoutSplash {
+  display: none;
+}
+
+
 #add-ingredient-search {
   position: absolute;
   bottom: 5px;
 }
-
 
 
 /* Phase 2 CSS ------------------------------------------------*/
@@ -247,7 +282,7 @@ label {
 }
 
 .shopping-editor{
-  /* display: none; */
+  display: none;
   display: block;
   width: 100%;
   height: 50px;
