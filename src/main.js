@@ -146,7 +146,7 @@ function displayShared(){
   let newHTML= "<ul>"
   masterList.shared.ingredients.forEach(function(ingredient){
     if(ingredient){
-      newHTML += `<li>${ingredient.name} ${ingredient.amount} ${ingredient.unit} <button id=${ingredient.name}>delete</button> <button id="!${ingredient.name}">Add to Search</button></li>`
+      newHTML += `<li>${ingredient.name} ${ingredient.amount} ${ingredient.unit} <button class="btn btn btn-light" id=${ingredient.name}>delete</button> <button class="btn btn btn-light" id="!${ingredient.name}">Add to Search</button></li>`
     }
   })
   newHTML += "</ul>"
