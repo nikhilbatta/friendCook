@@ -33,30 +33,28 @@ button {
 }
 
 
-/* phase modifiers --------------------------------------------------------*/
+/* phase1 modifiers --------------------------------------------------------*/
 
 #user-shared {
   /* display: none; */
   margin: 20px;
   border: solid thin black;
   background: rgba(227, 138, 144, 0.5);
+
 }
 
-
-
-
-
-#shopping-div {
-  margin: 20px;
-  border: solid thin black;
-  background: lightgreen;
+#add-ingredient-form {
+  width: 300px;
+  background-color: lightblue;
+  text-align: right;
+  padding: 15px;
 }
 
-/* div modifiers --------------------------------------------------------*/
-
-.shopping-editor{
-  display: none;
+#display-resource {
+  width: 300px;
+  background-color: teal;
 }
+
 
 
 
@@ -86,7 +84,12 @@ button {
 #recipe-editor {
   display: block;
   width: 25%;
+  background: rgba(235, 227, 160, 1);
+  border-radius: 10px;
+  text-align: center;
+}
 
+#recipe-editor h3{
 }
 
 .recipeItem {
@@ -162,4 +165,16 @@ button {
 .recipe-ingredients{
   display: block;
   padding: 10px;
+}
+
+/* Phase 3 modifiers ------------------------------------------------*/
+
+#shopping-div {
+  margin: 20px;
+  border: solid thin black;
+  background: lightgreen;
+}
+
+.shopping-editor{
+  display: none;
 }

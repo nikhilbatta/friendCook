@@ -73,7 +73,7 @@ export class Recipes {
           </div>
         </div>
         <div class="row meta">
-          <p class="sourceURL"><a href="${recipe.url}">Check Out This Recipe</a></p>
+          <p class="sourceURL"><a href="${recipe.url}" target="_blank">Check Out This Recipe</a></p>
           <p class="recipe-meta" id="readyInMinutes">${recipe.readyTime} minutes</p>
           <p class="recipe-meta" id ="servings">${recipe.servings} servings</p>
         </div>

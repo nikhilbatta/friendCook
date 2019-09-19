@@ -4,38 +4,48 @@
   <meta charset="utf-8">
   <title></title>
 </head>
-<body class=''>
+<body class='container'>
   <a href="#shopping-div" class="scrollTo">Scroll to Shopping</a>
-  <div id="user-shared">
-    <h1>Add an ingredient</h1><br>
-    <div class="row">
-      <div class="col-md-4">
-        <label for="name-input">Enter a name:</label>
-        <input id="name-input" type="text">
-      </div>
-      <div class="col-md-4">
-        <label for="amount-input">Enter an amount:</label>
-        <input id="amount-input" type="text">
-      </div>
-      <div class="col-md-4">
-        <label for="unit-input">Enter a unit:</label>
-        <input id="unit-input" type="text">
-      </div>
+
+  <div id="welcome-screen">
+    <div class="col-md-6">
+      <label for="serving-input">Enter number in party:</label>
+      <input id="serving-input" type="text">
+      <button id="serving-input-button" type="button">Submit!</button>
     </div>
-    <div class="row">
-      <div class="col-md-12">
-        <button id="resource-input-button" type="button">Submit!</button>
+  </div>
+
+
+
+  <div class="row" id="user-shared">
+
+    <div id="add-ingredient-form">
+      <div class="ingredient-field">
+        <h5>Add Ingredients to Share</h5>
+        <div class="ingredient-field">
+          <label for="name-input">Name:</label>
+          <input id="name-input" type="text">
+        </div>
+        <div class="ingredient-field">
+          <label for="amount-input">Quantity:</label>
+          <input id="amount-input" type="text">
+        </div>
+        <div class="ingredient-field">
+          <label for="unit-input">Enter a unit:</label>
+          <input id="unit-input" type="text">
+        </div>
+        <div class="ingredient-field">
+          <button id="resource-input-button" type="button">Add</button>
+        </div>
       </div>
-    </div>
-    <div class="row" id="display-resource">
     </div>
 
+    <div id="display-resource">
+    </div>
+
+
     <div class="row">
-      <div class="col-md-6">
-        <label for="serving-input">Enter number in party:</label>
-        <input id="serving-input" type="text">
-        <button id="serving-input-button" type="button">Submit!</button>
-      </div>
+
       <div class='col-md-6'>
         <label for="userInputSearch"> Search </label>
         <input id="userInputSearch" type="text" name="" value="">
@@ -44,14 +54,14 @@
     </div>
 
     <button id="fullSearch" type="button" name="button"> Search Recipes</button>
+    <div id='display-search'>
 
+    </div>
   </div>
 
 
 
-  <div id='display-search'>
 
-  </div>
 
 
   <div class="row" id="recipe-chooser">
@@ -180,17 +190,17 @@
             </ul>
           </div>
         </div>
-      </div>
+      </div> -->
 
     </div>
     <div id="recipe-editor">
-      <h3>Recipes you've chosen:</h3>
+      <h3>Your Recipes:</h3>
       <div class="">
-        <button class ="btn btn-light" type="button" name="button" id="submit-recipes">Add Recipes to Shopping List</button>
+        <button class ="btn btn-secondary" type="button" name="button" id="submit-recipes">Add Recipes to Shopping List</button>
       </div>
       <ul class="" id="active-Recipes"></ul>
     </div>
-  </div> -->
+  </div>
 
 
 
