@@ -17,6 +17,32 @@
       <br>
       <button id='splashButton' type="button" name="button">Start Cooking!</button>
 
+
+    <div class="row resource-header">
+      <div class="resource-title">
+        <h3 id="title">Group <br> Resource <br> Board</h3>
+      </div>
+    </div>
+
+    <div class="" id="add-ingredient-form">
+      <div class="ingredient-field">
+        <h5>Add Ingredients to Share</h5>
+        <div class="ingredient-field">
+          <label for="name-input">Name:</label>
+          <input id="name-input" type="text">
+        </div>
+        <div class="ingredient-field">
+          <label for="amount-input">Quantity:</label>
+          <input id="amount-input" type="text">
+        </div>
+        <div class="ingredient-field">
+          <label for="unit-input">Enter a unit:</label>
+          <input id="unit-input" type="text">
+        </div>
+        <div class="ingredient-field">
+          <button id="resource-input-button" type="button">Add</button>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -34,8 +60,31 @@
         <label for="serving-input">Enter number in party:</label>
         <input id="serving-input" type="text">
         <button id="serving-input-button" type="button">Submit!</button>
+  </div>
+
+  <div class="row" id="search-ingredient">
+
+    <div class="row resource-header">
+      <div class="resource-title">
+        <h3 id="title">Search <br> Recipes <br> by <br> Ingredient</h3>
       </div>
     </div>
+
+    <div class="" id="search-parameters">
+      <div id='display-search'>
+      </div>
+      <div id="add-ingredient-search">
+        <input id="userInputSearch" type="text" name="" value="">
+        <button class="btn btn btn-light" id="userSearchButton"type="button" name="button"> Add To Search </button>
+
+      </div>
+    </div>
+    <div class="">
+      <!-- <h5>Show me some recipes!</h5> -->
+      <p></p>
+      <button class="btn btn btn-light" id="fullSearch" type="button" name="button"> Search Recipes ►</button>
+    </div>
+  </div>
 
     <div class="row" id="user-shared">
       <div id="add-ingredient-form">
@@ -44,6 +93,48 @@
           <div class="ingredient-field">
             <label for="name-input">Name:</label>
             <input id="name-input" type="text">
+=======
+
+
+  <div id="ingredient-search-div">
+  </div>
+
+
+
+
+
+
+  <div class="row" id="recipe-chooser">
+    <div class="" id="recipe-Viewer">
+
+      <div class="recipeItem">
+        <div class="row recipe-header">
+          <div class="recipe-title">
+            <h3 id="title">Papa's Chicken Tenders</h3>
+          </div>
+          <div class="recipe-button">
+            <button class="btn btn btn-light" id="41597">Make this recipe!</button>
+          </div>
+        </div>
+        <div class="row meta">
+          <p class="sourceURL"><a href="http:\//google.com" target="blank">Check Out This Recipe</a></p>
+          <p class="recipe-meta" id="readyInMinutes">15 minutes</p>
+          <p class="recipe-meta" id ="servings">4 servings</p>
+        </div>
+        <div class="row">
+          <div class="recipeImage">
+            <img class="recipePictures" src="https://spoonacular.com/recipeImages/500504-312x231.jpg" alt="">
+          </div>
+          <div class="recipe-ingredients">
+            <ul>
+              <li>4 cups chopped carrots</li>
+              <li>5 tbls vinager</li>
+              <li>1 medium banana</li>
+              <li>1 Tbsp flaxseed meal</li>
+              <li>1 handful fresh basil</li>
+              <li>1.5 Tbsp peanut butter</li>
+              <li>1 large swiss chard</li>
+            </ul>
           </div>
           <div class="ingredient-field">
             <label for="amount-input">Quantity:</label>

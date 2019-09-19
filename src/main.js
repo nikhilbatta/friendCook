@@ -52,11 +52,13 @@ $(document).ready(function(){
     masterList.displayShoppingList()
   })
   $("#fullSearch").click(function(){
-  masterList.search.ingredients.filter(ingredient => ingredient != undefined);
-  let result = masterList.search.ingredients.map(function(ingredient){
-    return ingredient.name
-  })
-  callRecipeAPI(result)
+    let result = [];
+    masterList.search.ingredients.forEach(function(ingredient) {
+      if(ingredient) {
+        result.push(ingredient.name);
+      }
+    })
+    callRecipeAPI(result)
   })
 
   $("#edit-shopping-ingredient").click(function(){
@@ -75,7 +77,10 @@ function attachedSharedListners() {
       displaySearch()
     } else {
       masterList.shared.removeIngredient(name);
+      masterList.search.removeIngredient(name);
+      console.log(masterList.shared)
       displayShared();
+      displaySearch();
     }
   })
 }
@@ -150,8 +155,9 @@ function activeIngredientPopulator(){
 function displayShared(){
   let newHTML= "<ul>"
   masterList.shared.ingredients.forEach(function(ingredient){
+    console.log(ingredient)
     if(ingredient){
-      newHTML += `<li>${ingredient.name} ${ingredient.amount} ${ingredient.unit} <button id=${ingredient.name}>delete</button> <button id="!${ingredient.name}">Add to Search</button></li>`
+      newHTML += `<li>${ingredient.name} ${ingredient.amount} ${ingredient.unit} <button class="btn btn btn-light" id=${ingredient.name}>delete</button> <button class="btn btn btn-light" id="!${ingredient.name}">Add to Search</button></li>`
     }
   })
   newHTML += "</ul>"
@@ -162,8 +168,10 @@ function displaySearch(){
   let newHTML= "<ul>";
   console.log("masterList =", masterList)
   masterList.search.ingredients.forEach(function(ingredient){
-    console.log(ingredient.name)
+
+    if(ingredient){
       newHTML += `<li>${ingredient.name}</li>`;
+    }
   })
   newHTML += "</ul>"
   $('div#display-search').html(newHTML);
