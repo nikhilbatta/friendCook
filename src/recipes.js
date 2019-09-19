@@ -28,6 +28,14 @@ export class Recipes {
       }
     }
   }
+  makeInactive(id){
+    for (let i=0;i<this.recipes.length;i++){
+      if (this.recipes[i].id == id) {
+        this.recipes[i].active = false;
+        return;
+      }
+    }
+  }
   recipeExtractor(results){
     results.forEach((recipeRaw)=>{
       let id = recipeRaw.id;
@@ -56,18 +64,29 @@ export class Recipes {
     this.recipes.forEach(function(recipe){
       newHTML +=
       `<div class="recipeItem">
-        <h3 id="title">${recipe.title}</h3><br>
-        <p id="sourceURL"><a href="${recipe.url}">Check Out This Recipe</p></a><br>
-        <img class="recipePictures" src="${recipe.image}" alt=""><br>
-        <p id="readyInMinutes">${recipe.readyTime} minutes</p><br>
-        <p id ="servings">${recipe.servings} servings</p><br>
-        <button id=${recipe.id}>Make this recipe!</button><br>
+        <div class="row recipe-header">
+          <div class="recipe-title">
+            <h3 id="title">${recipe.title}</h3>
+          </div>
+          <div class="recipe-button">
+            <button class="btn btn btn-light" id="${recipe.id}">Make this recipe!</button>
+          </div>
+        </div>
+        <div class="row meta">
+          <p class="sourceURL"><a href="${recipe.url}" target="_blank">Check Out This Recipe</a></p>
+          <p class="recipe-meta" id="readyInMinutes">${recipe.readyTime} minutes</p>
+          <p class="recipe-meta" id ="servings">${recipe.servings} servings</p>
+        </div>
+        <div class="row">
+          <div class="recipeImage">
+            <img class="recipePictures" src="${recipe.image}" alt="">
+          </div>
           <div class="recipe-ingredients">
             <ul>`
-      recipe.recipeIngredients.forEach(function(ingredient){
-        newHTML += `<li>${ingredient.amount} ${ingredient.unit} ${ingredient.name}</li>`
-      });
-      newHTML += `</ul></div></div>`;
+            recipe.recipeIngredients.forEach(function(ingredient){
+              newHTML += `<li>${ingredient.amount} ${ingredient.unit} ${ingredient.name}</li>`
+            });
+            newHTML += `</ul></div></div></div>`;
     })
     $('#recipe-Viewer').html(newHTML);
   }
