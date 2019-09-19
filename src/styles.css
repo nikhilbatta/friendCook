@@ -2,6 +2,9 @@
 body{
   min-width: 650px;
   color: #2e2e2e;
+  background: rgb(201,201,201);
+background: linear-gradient(90deg, rgba(201,201,201,1) 0%, rgba(252,252,252,1) 25%, rgba(252,252,252,1) 25%, rgba(252,252,252,1) 75%, rgba(208,208,208,1) 100%);
+  /* font-family: 'Loved by the King', cursive; */
 }
 
 
@@ -11,10 +14,16 @@ li {
 
 input {
   width: 100px;
+  border-radius: 10px;
 }
 
 button {
   border-radius: 5px;
+}
+
+label {
+  font-size: 1.2em;
+  font-weight: 500;
 }
 
 
@@ -29,7 +38,8 @@ button {
 }
 
 .duplicate{
-  background-color: yellow;
+  font-size: 1.2em;
+  font-weight: 600;
 }
 
 
@@ -170,11 +180,31 @@ button {
 /* Phase 3 modifiers ------------------------------------------------*/
 
 #shopping-div {
-  margin: 20px;
+  margin: 40px;
   border: solid thin black;
-  background: lightgreen;
+  border-radius: 10px;
+  background: rgba(235, 227, 160, 1);
 }
 
 .shopping-editor{
-  display: none;
+  /* display: none; */
+  display: block;
+  width: 100%;
+  height: 50px;
+  background-color: rgba(92, 92, 92, .2);
+  text-align: center;
+  padding: 10px;
+}
+
+#shopping-container{
+  display: block;
+  width: 100%;
+  overflow-y: scroll;
+  margin-right: 20px;
+}
+
+#shopping-list {
+  font-family: 'Loved by the King', cursive;
+  font-size: 25px;
+  text-align: center;
 }
