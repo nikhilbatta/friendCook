@@ -41,12 +41,9 @@ export class MasterList {
   }
 
   pushToSearch(name){
-    console.log(name)
     this.shared.ingredients.forEach((ingredient) => {
-      console.log(ingredient)
       if (ingredient){
         if(name === ingredient.name){
-          console.log(ingredient.name)
           this.search.ingredients.push(ingredient)
         }
       }
@@ -62,11 +59,9 @@ export class IngredientList {
     this.ingredients.push(ingredient);
   }
   removeIngredient(ingredient){
-    console.log(ingredient)
     for (let i=0;i<this.ingredients.length;i++){
       if (this.ingredients[i]) {
         if(ingredient === this.ingredients[i].name){
-          console.log('match')
           this.ingredients[i] = undefined;
         }
       }

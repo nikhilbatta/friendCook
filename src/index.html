@@ -1,93 +1,216 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body class='container'>
-    <a href="#shopping-div" class="scrollTo">Scroll to Shopping</a>
-    <div id="user-shared">
-      <h3 class= "jumbotron">Friend Cook</h3>
-      <h1>Add an ingredient</h1><br>
-      <div class="row">
-        <div class="col-md-4">
-          <label for="name-input">Enter a name:</label>
-          <input id="name-input" type="text">
-        </div>
-        <div class="col-md-4">
-          <label for="amount-input">Enter an amount:</label>
-          <input id="amount-input" type="text">
-        </div>
-        <div class="col-md-4">
-          <label for="unit-input">Enter a unit:</label>
-          <input id="unit-input" type="text">
-        </div>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+<body class=''>
+  <a href="#shopping-div" class="scrollTo">Scroll to Shopping</a>
+  <div id="user-shared">
+    <h1>Add an ingredient</h1><br>
+    <div class="row">
+      <div class="col-md-4">
+        <label for="name-input">Enter a name:</label>
+        <input id="name-input" type="text">
       </div>
-      <div class="row">
-        <div class="col-md-12">
-          <button id="resource-input-button" type="button">Submit!</button>
-        </div>
+      <div class="col-md-4">
+        <label for="amount-input">Enter an amount:</label>
+        <input id="amount-input" type="text">
       </div>
-      <div class="row" id="display-resource">
+      <div class="col-md-4">
+        <label for="unit-input">Enter a unit:</label>
+        <input id="unit-input" type="text">
       </div>
-
-      <div class="row">
-        <div class="col-md-6">
-          <label for="serving-input">Enter number in party:</label>
-          <input id="serving-input" type="text">
-          <button id="serving-input-button" type="button">Submit!</button>
-        </div>
-        <div class='col-md-6'>
-          <label for="userInputSearch"> Search </label>
-          <input id="userInputSearch" type="text" name="" value="">
-          <button id="userSearchButton"type="button" name="button"> Add To Search </button>
-        </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <button id="resource-input-button" type="button">Submit!</button>
       </div>
-
-
-      <button id="fullSearch" type="button" name="button"> Search Recipes</button>
-
-
-
+    </div>
+    <div class="row" id="display-resource">
     </div>
 
-
-
-    <div id='display-search'>
-
-    </div>
-
-
-    <div id="recipe-chooser">
-      <div class="" id="recipe-Viewer">
+    <div class="row">
+      <div class="col-md-6">
+        <label for="serving-input">Enter number in party:</label>
+        <input id="serving-input" type="text">
+        <button id="serving-input-button" type="button">Submit!</button>
       </div>
-      <div>
-        <div class="" id="active-Recipes"></div>
-        <div class="">
-          <button type="button" name="button" id="submit-recipes">Add Recipes to Shopping List</button>
-        </div>
+      <div class='col-md-6'>
+        <label for="userInputSearch"> Search </label>
+        <input id="userInputSearch" type="text" name="" value="">
+        <button id="userSearchButton"type="button" name="button"> Add To Search </button>
       </div>
     </div>
 
+    <button id="fullSearch" type="button" name="button"> Search Recipes</button>
+
+  </div>
 
 
 
-    <div id="shopping-div">
-      <div class="shopping-editor">
-        <label for="name">Ingredient Name:</label>
-        <input id="shopping-ingredient-name" name="name" type="text">
-        <label for="amount">Amount:</label>
-        <input id="shopping-ingredient-amount" name="amount" type="text">
-        <label for="unit">Unit:</label>
-        <input id="shopping-ingredient-unit" name="unit" type="text">
-        <label for="claimed-by">Claimed by:</label>
-        <input id="shopping-ingredient-claimed-by" name="claimed-by" type="text">
-        <button id="edit-shopping-ingredient" type="button" name="button">Edit Ingredient</button>
+  <div id='display-search'>
+
+  </div>
+
+
+  <div class="row" id="recipe-chooser">
+    <div class="" id="recipe-Viewer">
+
+      <!-- <div class="recipeItem">
+        <div class="row recipe-header">
+          <div class="recipe-title">
+            <h3 id="title">Papa's Chicken Tenders</h3>
+          </div>
+          <div class="recipe-button">
+            <button class="btn btn btn-light" id="41597">Make this recipe!</button>
+          </div>
+        </div>
+        <div class="row meta">
+          <p class="sourceURL"><a href="http:\//google.com" target="blank">Check Out This Recipe</a></p>
+          <p class="recipe-meta" id="readyInMinutes">15 minutes</p>
+          <p class="recipe-meta" id ="servings">4 servings</p>
+        </div>
+        <div class="row">
+          <div class="recipeImage">
+            <img class="recipePictures" src="https://spoonacular.com/recipeImages/500504-312x231.jpg" alt="">
+          </div>
+          <div class="recipe-ingredients">
+            <ul>
+              <li>4 cups chopped carrots</li>
+              <li>5 tbls vinager</li>
+              <li>1 medium banana</li>
+              <li>1 Tbsp flaxseed meal</li>
+              <li>1 handful fresh basil</li>
+              <li>1.5 Tbsp peanut butter</li>
+              <li>1 large swiss chard</li>
+            </ul>
+          </div>
+        </div>
       </div>
-      <div id="shopping-list">
+      <div class="recipeItem">
+        <div class="row recipe-header">
+          <div class="recipe-title">
+            <h3 id="title">Papa's Chicken Tenders</h3>
+          </div>
+          <div class="recipe-button">
+            <button class="btn btn btn-light" id="41597">Make this recipe!</button>
+          </div>
+        </div>
+        <div class="row meta">
+          <p class="sourceURL"><a href="http:\//google.com" target="blank">Check Out This Recipe</a></p>
+          <p class="recipe-meta" id="readyInMinutes">15 minutes</p>
+          <p class="recipe-meta" id ="servings">4 servings</p>
+        </div>
+        <div class="row">
+          <div class="recipeImage">
+            <img class="recipePictures" src="https://spoonacular.com/recipeImages/500504-312x231.jpg" alt="">
+          </div>
+          <div class="recipe-ingredients">
+            <ul>
+              <li>4 cups chopped carrots</li>
+              <li>5 tbls vinager</li>
+              <li>1 medium banana</li>
+              <li>1 Tbsp flaxseed meal</li>
+              <li>1 handful fresh basil</li>
+              <li>1.5 Tbsp peanut butter</li>
+              <li>1 large swiss chard</li>
+            </ul>
+          </div>
+        </div>
       </div>
+      <div class="recipeItem">
+        <div class="row recipe-header">
+          <div class="recipe-title">
+            <h3 id="title">Papa's Chicken Tenders</h3>
+          </div>
+          <div class="recipe-button">
+            <button class="btn btn btn-light" id="41597">Make this recipe!</button>
+          </div>
+        </div>
+        <div class="row meta">
+          <p class="sourceURL"><a href="http:\//google.com" target="blank">Check Out This Recipe</a></p>
+          <p class="recipe-meta" id="readyInMinutes">15 minutes</p>
+          <p class="recipe-meta" id ="servings">4 servings</p>
+        </div>
+        <div class="row">
+          <div class="recipeImage">
+            <img class="recipePictures" src="https://spoonacular.com/recipeImages/500504-312x231.jpg" alt="">
+          </div>
+          <div class="recipe-ingredients">
+            <ul>
+              <li>4 cups chopped carrots</li>
+              <li>5 tbls vinager</li>
+              <li>1 medium banana</li>
+              <li>1 Tbsp flaxseed meal</li>
+              <li>1 handful fresh basil</li>
+              <li>1.5 Tbsp peanut butter</li>
+              <li>1 large swiss chard</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="recipeItem">
+        <div class="row recipe-header">
+          <div class="recipe-title">
+            <h3 id="title">Papa's Chicken Tenders</h3>
+          </div>
+          <div class="recipe-button">
+            <button class="btn btn btn-light" id="41597">Make this recipe!</button>
+          </div>
+        </div>
+        <div class="row meta">
+          <p class="sourceURL"><a href="http:\//google.com" target="blank">Check Out This Recipe</a></p>
+          <p class="recipe-meta" id="readyInMinutes">15 minutes</p>
+          <p class="recipe-meta" id ="servings">4 servings</p>
+        </div>
+        <div class="row">
+          <div class="recipeImage">
+            <img class="recipePictures" src="https://spoonacular.com/recipeImages/500504-312x231.jpg" alt="">
+          </div>
+          <div class="recipe-ingredients">
+            <ul>
+              <li>4 cups chopped carrots</li>
+              <li>5 tbls vinager</li>
+              <li>1 medium banana</li>
+              <li>1 Tbsp flaxseed meal</li>
+              <li>1 handful fresh basil</li>
+              <li>1.5 Tbsp peanut butter</li>
+              <li>1 large swiss chard</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
     </div>
+    <div id="recipe-editor">
+      <h3>Recipes you've chosen:</h3>
+      <div class="">
+        <button class ="btn btn-light" type="button" name="button" id="submit-recipes">Add Recipes to Shopping List</button>
+      </div>
+      <ul class="" id="active-Recipes"></ul>
+    </div>
+  </div> -->
 
 
-  </body>
+
+
+  <div id="shopping-div">
+    <div class="shopping-editor">
+      <label for="name">Ingredient Name:</label>
+      <input id="shopping-ingredient-name" name="name" type="text">
+      <label for="amount">Amount:</label>
+      <input id="shopping-ingredient-amount" name="amount" type="text">
+      <label for="unit">Unit:</label>
+      <input id="shopping-ingredient-unit" name="unit" type="text">
+      <label for="claimed-by">Claimed by:</label>
+      <input id="shopping-ingredient-claimed-by" name="claimed-by" type="text">
+      <button id="edit-shopping-ingredient" type="button" name="button">Edit Ingredient</button>
+    </div>
+    <div id="shopping-list">
+    </div>
+  </div>
+
+
+</body>
 </html>

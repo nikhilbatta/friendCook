@@ -11,7 +11,7 @@ import {Recipes, RecipeTemplate, recipeHolder } from './recipes.js';
 $(document).ready(function(){
   attachRecipeListeners();
   attachedSharedListners();
-  console.log(masterList)
+
 
   $(".scrollTo").on('click', function(e) {
      e.preventDefault();
@@ -26,15 +26,12 @@ $(document).ready(function(){
     let amount =$("#amount-input").val();
     let unit =$("#unit-input").val();
     let newIngredient = new Ingredient(name, amount, unit);
-    console.log(newIngredient)
     masterList.shared.addIngredient(newIngredient);
     displayShared();
   })
   $("#userSearchButton").click(function(){
     let search = $("#userInputSearch").val();
-    console.log(search)
     let newIngredient = new Ingredient(search);
-    console.log(newIngredient);
     masterList.search.addIngredient(newIngredient);
     displaySearch()
   })
@@ -48,7 +45,6 @@ $(document).ready(function(){
     masterList.shopping = recipeHolder.buildShoppingList();
     masterList.compareShoppingShared()
     masterList.displayShoppingList()
-    console.log(masterList)
   })
   $("#fullSearch").click(function(){
   masterList.search.ingredients.filter(ingredient => ingredient != undefined);
@@ -68,14 +64,12 @@ $(document).ready(function(){
 
 function attachedSharedListners() {
   $('div#display-resource').on("click", "button", function() {
-    console.log('check');
     let name = this.id;
     if(name[0] === "!"){
       masterList.pushToSearch(name.slice(1));
       displaySearch()
     } else {
       masterList.shared.removeIngredient(name);
-      console.log(masterList.shared.ingredients)
       displayShared();
     }
   })
@@ -88,11 +82,23 @@ function attachRecipeListeners() {
     let string = "";
     recipeHolder.recipes.forEach(function(recipe){
       if (recipe.active === true){
-      string += ` ${recipe.title}`
+      string += `<p id=${id}> ${recipe.title}</p>`
       }
     })
-    $("#active-Recipes").text(string);
+    $("#active-Recipes").html(string);
   });
+  // $("#active-Recipes").on("click", "p", function(){
+  //   let id = this.id;
+  //   recipeHolder.makeInactive(id);
+  //   let string = "";
+  //   recipeHolder.recipes.forEach(function(recipe){
+  //     if (recipe.active === true){
+  //     string += `<p id=${id}> ${recipe.title}</p>`
+  //     }
+  //   })
+  //   $("#active-Recipes").html(string);
+  // });
+
   $("#shopping-list").on('click', 'li', function(){
     let id = this.id;
     $(".ingredient").removeClass("active")
@@ -118,7 +124,6 @@ function activeIngredientEditor(){
     ingredient.amount = $("#shopping-ingredient-amount").val();
     ingredient.unit = $("#shopping-ingredient-unit").val();
     ingredient.claimedBy = $("#shopping-ingredient-claimed-by").val();
-    console.log(ingredient);
     }
   }
 }
